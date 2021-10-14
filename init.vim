@@ -1,19 +1,24 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'jiangmiao/auto-pairs'
+Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-surround'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Yggdroot/indentLine'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'morhetz/gruvbox'
 Plug 'easymotion/vim-easymotion'
-Plug 'jiangmiao/auto-pairs'
+Plug 'mattn/emmet-vim'
 call plug#end()
 
 let mapleader=" "
