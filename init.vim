@@ -279,6 +279,12 @@ set smartcase       " ignore case if search pattern is lower case
                     " case-sensitive otherwise
 " }}} Search
 
+" Airline {{{
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+" }}}
+
 "Reload Vim config
 noremap <Leader><Leader><esc> :source $MYVIMRC<CR>
 
