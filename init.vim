@@ -1,24 +1,24 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'jiangmiao/auto-pairs'
-Plug 'mattn/emmet-vim'
-Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-surround'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Yggdroot/indentLine'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'jparise/vim-graphql'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'morhetz/gruvbox'
+Plug 'vim-syntastic/syntastic'
 Plug 'easymotion/vim-easymotion'
-Plug 'mattn/emmet-vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'patstockwell/vim-monokai-tasty'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'styled-components/vim-styled-components'
+Plug 'elzr/vim-json'
+Plug 'jparise/vim-graphql'
+
 call plug#end()
 
 let mapleader=" "
@@ -220,14 +220,12 @@ nnoremap <C-l> <C-w>l
 " }}}
 " FZF {{{
 
-nnoremap <C-p> :FZF<CR>
+nnoremap <leader><leader>f :Files<CR>
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit'
   \}
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-
 " }}}
 
 "Delete search highlight{{{
@@ -236,15 +234,31 @@ map <esc> :noh<cr>
 
 "}}}
 
+"Syntax {{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+"}}}
+
 
 " Colors {{{
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_italicize_comments = '1'
-let g:gruvbox_italicize_strings = '1'
-colorscheme gruvbox
+"let g:gruvbox_contrast_dark = 'hard'
+"let g:gruvbox_italicize_comments = '1'
+"let g:gruvbox_italicize_strings = '1'
+syntax enable
+let g:vim_monokai_tasty_italic = 1
+let g:lightline = {
+         \'colorscheme':'monokai_tasty',
+         \}
+let g:airline_theme='monokai_tasty'
+colorscheme vim-monokai-tasty
 "lightline
 "}}} Colors
-
 " Spaces & Tabs {{{
 set tabstop=3       " number of visual spaces per TAB
 set softtabstop=3   " number of spaces in tab when editing
@@ -278,12 +292,6 @@ set ignorecase      " ignore case when searching
 set smartcase       " ignore case if search pattern is lower case
                     " case-sensitive otherwise
 " }}} Search
-
-" Airline {{{
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-" }}}
 
 "Reload Vim config
 noremap <Leader><Leader><esc> :source $MYVIMRC<CR>
